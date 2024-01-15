@@ -17,6 +17,7 @@
 package org.modeldriven.fuml.environment;
 
 import org.modeldriven.fuml.repository.Repository;
+import org.tuilmenau.fuml.extensions.structuredclassifiers.SignatureBasedDispatchStrategy;
 
 import UMLPrimitiveTypes.UnlimitedNatural;
 import fuml.Debug;
@@ -63,9 +64,12 @@ public class Environment {
 		this.locus = new Locus();
 		this.locus.setFactory(factory);
 		this.locus.setExecutor(new Executor());
-
-		this.locus.factory
-				.setStrategy(new fuml.semantics.structuredclassifiers.RedefinitionBasedDispatchStrategy());
+		
+		// Set custom dispatch strategy org.tuilmenau.fuml.extensions.structuredclassifiers.SignatureBasedDispatchStrategy 
+		// instead of fuml.semantics.structuredclassifiers.RedefinitionBasedDispatchStrategy
+		/*this.locus.factory
+				.setStrategy(new fuml.semantics.structuredclassifiers.RedefinitionBasedDispatchStrategy());*/
+		this.locus.factory.setStrategy(new org.tuilmenau.fuml.extensions.structuredclassifiers.SignatureBasedDispatchStrategy());
 		this.locus.factory
 				.setStrategy(new fuml.semantics.commonbehavior.FIFOGetNextEventStrategy());
 		this.locus.factory
